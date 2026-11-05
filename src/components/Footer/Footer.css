@@ -1,9 +1,122 @@
 .site-footer {
-  background: var(--surface);
-  border-top: 1px solid var(--border);
-  color: var(--text-soft);
+  position: relative;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  
+  /* Se adapta automáticamente al color de superficie del tema activo */
+  background: var(--surface); 
+  border-top: 1px solid var(--border-color, rgba(0, 0, 0, 0.08));
+  color: var(--text);
+  
+  padding: 48px 24px 20px;
+  margin-top: 60px;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+  transition: background-color var(--transition), color var(--transition), border-color var(--transition);
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 36px;
+  padding-bottom: 32px;
+}
+
+/* Marca / Logo */
+.footer-logo {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 1.3rem;
+  color: var(--text);
+  letter-spacing: -0.5px;
+  margin-bottom: 12px;
+}
+
+.footer-desc {
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--text-soft, #64748b);
+}
+
+/* Títulos de columnas */
+.footer-links h4,
+.footer-social h4 {
+  color: var(--text);
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Enlaces */
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 10px;
+}
+
+.footer-links a {
+  color: var(--text-soft, #64748b);
+  text-decoration: none;
+  font-size: 0.88rem;
+  transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+  color: #3b82f6;
+}
+
+/* Iconos de redes sociales */
+.social-icons {
+  display: flex;
+  gap: 12px;
+}
+
+.social-icons a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 1px solid var(--border-color, #cbd5e1);
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.8rem;
+  transition: all 0.2s ease;
+}
+
+.social-icons a:hover {
+  background: #3b82f6;
+  border-color: #3b82f6;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* Copyright inferior */
+.footer-bottom {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-color, rgba(0, 0, 0, 0.08));
   text-align: center;
-  padding: 28px 16px;
-  font-size: 1rem;
-  margin-top: 24px;
+  font-size: 0.82rem;
+  color: var(--text-soft, #64748b);
+}
+
+/* Adaptación móvil */
+@media (max-width: 640px) {
+  .footer-container {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
 }
