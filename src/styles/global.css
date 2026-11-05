@@ -1,5 +1,6 @@
 @import "./variables.css";
 
+/* Selector universal corregido (era - en lugar de *) */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -13,6 +14,7 @@ body {
   color: var(--text);
   line-height: 1.5;
   transition: background-color var(--transition), color var(--transition);
+  overflow-x: hidden; /* Evita barras de desplazamiento horizontal indeseadas */
 }
 
 h1,
@@ -45,7 +47,8 @@ a {
   flex: 1;
   width: 100%;
   padding-top: calc(var(--header-height) + 24px);
-  padding-bottom: calc(var(--footer-height) + 24px);
+  /* Eliminamos padding-bottom forzado para que el footer no deje un espacio en blanco gigante debajo */
+  padding-bottom: 40px; 
 }
 
 .auth-layout {
@@ -72,6 +75,8 @@ a {
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 20px;
   padding: 24px 32px 48px;
+  max-width: 1280px;
+  margin: 0 auto;
 }
 
 .product-card {
@@ -90,20 +95,20 @@ a {
   text-align: left;
 }
 .product-card:hover {
-  border-color: var(--green);
+  border-color: #3b82f6; /* Actualizado al tono azul corporativo de la tienda */
   box-shadow: 0 14px 36px rgba(0, 60, 150, 0.18);
   transform: translateY(-4px);
 }
 .product-card-link { display: block; }
 .product-card-link:focus-visible {
-  outline: 3px solid var(--mint-dark);
+  outline: 3px solid #3b82f6;
   outline-offset: -3px;
 }
 .product-card .product-main:last-child { padding-top: 0; }
 .product-card .badge-agotado { z-index: 1; }
 .product-card .cart-feedback { min-height: 1.2em; }
 .product-card:focus-visible {
-  outline: 3px solid var(--mint-dark);
+  outline: 3px solid #3b82f6;
   outline-offset: 3px;
 }
 
@@ -132,16 +137,16 @@ a {
 .product-categoria {
   font-size: .72rem;
   font-weight: 700;
-  color: var(--mint-dark);
+  color: #3b82f6;
 }
 .product-main h3 { font-size: 1.05rem; margin: 4px 0 6px; color: var(--green-deep); }
-.product-precio { font-weight: 700; color: var(--green); }
+.product-precio { font-weight: 700; color: var(--text); }
 
 .add-to-cart-button:hover:not(:disabled),
 .commerce-button:hover {
-  background: var(--mint);
-  color: #172114;
-  box-shadow: 0 6px 18px rgba(57, 255, 20, 0.25);
+  background: #2563eb;
+  color: #ffffff;
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.25);
   transform: translateY(-1px);
 }
 
@@ -151,7 +156,7 @@ button:focus-visible,
 a:focus-visible,
 input:focus-visible,
 select:focus-visible {
-  outline: 3px solid var(--green);
+  outline: 3px solid #3b82f6;
   outline-offset: 3px;
 }
 
@@ -159,7 +164,7 @@ select:focus-visible {
   position: absolute;
   top: 10px;
   right: 10px;
-  background: var(--error);
+  background: #ef4444;
   color: #fff;
   font-size: .7rem;
   font-weight: 700;
