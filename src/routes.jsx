@@ -1,5 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import MainLayout from "./layouts/MainLayout.jsx";
+import Home from "./pages/Home.jsx"; // <-- 1. Importa la página de Inicio
 import Productos from "./pages/Productos.jsx";
 import ProductoDetalle from "./pages/ProductoDetalle.jsx";
 import { ThemeProvider } from "./context/ThemeContext.jsx";
@@ -16,8 +17,12 @@ export default function AppRoutes() {
         <DemoAuthProvider>
           <Routes>
             <Route element={<MainLayout />}>
-              <Route path="/" element={<Productos />} />
+              {/* 2. La ruta raíz (/) ahora apunta a Home (la portada) */}
+              <Route path="/" element={<Home />} />
+              
+              {/* 3. La ruta /productos mantiene el catálogo completo con filtros */}
               <Route path="/productos" element={<Productos />} />
+              
               <Route path="/productos/:id" element={<ProductoDetalle />} />
               <Route path="/carrito" element={<Carrito />} />
               <Route path="/acceso" element={<Acceso />} />

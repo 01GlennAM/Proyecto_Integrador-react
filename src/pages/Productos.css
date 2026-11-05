@@ -1,3 +1,4 @@
+/* --- BARRA DE FILTROS Y BOTONES --- */
 .filtros-bar {
   display: flex;
   flex-wrap: wrap;
@@ -13,34 +14,48 @@
   flex: 1;
 }
 
+/* Botones de categoría (Inactivos / Base) */
 .btn-filtro {
-  background: var(--surface);
-  border: 2px solid var(--mint);
-  color: var(--green);
+  background: #ffffff;
+  border: 1px solid #cbd5e1; /* Borde gris suave y elegante */
+  color: #334155;            /* Texto oscuro legible */
   padding: 8px 16px;
   border-radius: 999px;
   cursor: pointer;
   font-size: .85rem;
   font-weight: 600;
-  transition:
-    background-color var(--transition),
-    border-color var(--transition),
-    box-shadow var(--transition),
-    color var(--transition),
-    transform var(--transition);
-}
-.btn-filtro.active, .btn-filtro:hover {
-  background: var(--mint);
-  border-color: var(--mint);
-  color: #172114;
-  box-shadow: 0 4px 14px rgba(57, 255, 20, 0.22);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  transition: all 0.2s ease-in-out;
 }
 
+/* Efecto al pasar el cursor (Hover) */
+.btn-filtro:hover {
+  background: #f1f5f9;
+  border-color: #94a3b8;
+  color: #0f172a;
+}
+
+/* Estado Activo (Cuando seleccionas la categoría) - Adiós al verde fosforescente */
+.btn-filtro.active {
+  background: #2563eb;       /* Azul moderno y corporativo */
+  border-color: #2563eb;
+  color: #ffffff;            /* Texto blanco para contrastar */
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25); /* Sombra azul sutil */
+}
+
+/* Selector desplegable de la barra de filtros */
 .filtros-bar select {
   padding: 9px 12px;
-  border-radius: var(--radius);
-  border: 2px solid var(--bg);
-  background: var(--bg);
-  color: var(--text);
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: #334155;
   font-size: .9rem;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.filtros-bar select:focus {
+  border-color: #2563eb;
 }
