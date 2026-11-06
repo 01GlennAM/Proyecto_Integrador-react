@@ -1,5 +1,4 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
-import { mockProductos } from "../data/MockProductos.jsx";
 
 const CART_STORAGE_KEY = "tienda-creativa-cart";
 const CartContext = createContext(null);

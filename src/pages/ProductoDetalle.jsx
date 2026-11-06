@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import { obtenerProductoPorId } from "../services/MockApi.js";
+import { obtenerProductoPorId } from "../services/productosService";
 import { formatearPrecio } from "../utils/formatters";
 import { useCart } from "../context/CartContext.jsx";
 import ProductImage from "../components/ProductImage/ProductImage.jsx";

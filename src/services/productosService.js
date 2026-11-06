@@ -10,4 +10,11 @@ export const obtenerProductos = async () => {
 export const crearProducto = async (producto) => {
   const response = await apiClient.post('/productos', producto);
   return response.data;
+  
+};
+
+// Obtener un producto por su ID (GET http://localhost:8080/api/productos/{id})
+export const obtenerProductoPorId = async (id) => {
+    const response = await apiClient.get(`/productos/${id}`);
+    return response.data;
 };

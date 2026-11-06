@@ -1,3 +1,4 @@
+/*
 export const mockProductos = [
   // ---------- TENIS ----------
   {
@@ -172,7 +173,7 @@ export const mockProductos = [
     tallas: ["Única"],
     colores: ["Negro", "Camuflado"],
     stock: 15
-  },
+  },  
   {
     id: 16,
     nombre: "Medias Pack x3",
@@ -185,3 +186,4 @@ export const mockProductos = [
     stock: 40
   }
 ];
+*/

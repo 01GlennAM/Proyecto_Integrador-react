@@ -1,4 +1,4 @@
-
+/*
 import { mockProductos } from "../data/MockProductos.jsx";
 
 function delayMock(ms = 300) {
@@ -19,4 +19,4 @@ export async function obtenerProductoPorId(id) {
 
   return producto || null;
 }
- 
+ */
