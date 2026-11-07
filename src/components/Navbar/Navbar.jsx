@@ -30,6 +30,7 @@ export default function Navbar() {
         <div className="nav-actions">
           <Link to="/" className="nav-link">Inicio</Link>
           <Link to="/productos" className="nav-link">Productos</Link>
+          <Link to="/analisis" className="nav-link">Análisis</Link>
           <Link to="/carrito" className="nav-link cart-nav-link">
             Carrito{itemCount > 0 && <span className="cart-count">{itemCount}</span>}
           </Link>

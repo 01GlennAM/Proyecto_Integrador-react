@@ -9,6 +9,7 @@ import { DemoAuthProvider } from "./context/DemoAuthContext.jsx";
 import Carrito from "./pages/Carrito.jsx";
 import Acceso from "./pages/Acceso.jsx";
 import ResumenCompra from "./pages/ResumenCompra.jsx";
+import Graficos from "./components/Graficos/Graficos.jsx";
 
 export default function AppRoutes() {
   return (
@@ -24,6 +25,7 @@ export default function AppRoutes() {
               <Route path="/productos" element={<Productos />} />
               
               <Route path="/productos/:id" element={<ProductoDetalle />} />
+              <Route path="/analisis" element={<Graficos />} />
               <Route path="/carrito" element={<Carrito />} />
               <Route path="/acceso" element={<Acceso />} />
               <Route path="/resumen" element={<ResumenCompra />} />
