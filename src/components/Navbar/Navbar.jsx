@@ -18,7 +18,9 @@ export default function Navbar() {
   return (
     <header className="site-header">
       <nav className="topbar" aria-label="Navegación principal">
-        <Link className="logo-text" to="/">Tienda Creativa</Link>
+        <Link className="logo-text" to="/" aria-label="Tienda Creativa, ir al inicio">
+          Tienda <span className="logo-accent">Creativa</span>
+        </Link>
         <div className="topbar-search">
           <input
             type="text"

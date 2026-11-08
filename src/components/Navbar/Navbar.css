@@ -35,19 +35,14 @@
   letter-spacing: -0.5px;
   text-transform: uppercase;
   text-decoration: none;
-  
-  background-color: #ffffff; 
-  background-image: url('https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=800&auto=format&fit=crop'); 
-  background-size: 180% auto; 
-  background-position: center;
-  background-repeat: no-repeat;
-  
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+  /* Texto sólido con los colores del tema: alto contraste en modo claro y oscuro */
+  color: var(--text);
   transition: transform 0.2s ease;
   white-space: nowrap;
+}
+
+.logo-accent {
+  color: var(--green);
 }
 
 .logo-text:hover {
