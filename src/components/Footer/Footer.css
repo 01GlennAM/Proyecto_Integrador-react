@@ -5,34 +5,35 @@
 
   /* Se adapta automáticamente al color de superficie del tema activo */
   background: var(--surface);
-  border-top: 1px solid var(--border-color, rgba(0, 0, 0, 0.08));
+  border-top: 1px solid var(--border);
   color: var(--text);
-
-  /* Footer compacto: el contenido ya deja 40px de aire con padding-bottom */
-  padding: 24px 24px 12px;
+  padding: 18px 24px 10px;
   box-sizing: border-box;
   transition: background-color var(--transition), color var(--transition), border-color var(--transition);
 }
 
+/* Una sola franja: marca | enlaces | redes */
 .footer-container {
   max-width: 1200px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1.6fr repeat(3, 1fr);
-  gap: 24px;
-  padding-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px 32px;
+  flex-wrap: wrap;
+  padding-bottom: 12px;
 }
 
-/* Marca / Logo (mismos colores que el logo de la barra superior) */
+/* Marca (mismos colores que el logo de la barra superior) */
 .footer-logo {
   font-family: 'Syne', sans-serif;
   font-weight: 800;
-  font-size: 1.05rem;
+  font-size: 1rem;
   text-transform: uppercase;
-  color: var(--text);
   letter-spacing: -0.3px;
   white-space: nowrap;
-  margin: 0 0 6px;
+  color: var(--text);
+  margin: 0;
 }
 
 .footer-logo span {
@@ -40,39 +41,23 @@
 }
 
 .footer-desc {
-  font-size: 0.82rem;
-  line-height: 1.45;
-  color: var(--text-soft, #64748b);
-  margin: 0;
-  max-width: 320px;
-}
-
-/* Títulos de columnas */
-.footer-links h4,
-.footer-social h4 {
-  color: var(--text);
   font-size: 0.78rem;
-  font-weight: 700;
-  margin: 0 0 8px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  color: var(--text-soft);
+  margin: 2px 0 0;
 }
 
-/* Enlaces */
-.footer-links ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.footer-links li {
-  margin-bottom: 4px;
+/* Enlaces en línea */
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 20px;
 }
 
 .footer-links a {
-  color: var(--text-soft, #64748b);
+  color: var(--text-soft);
+  font-size: 0.85rem;
+  font-weight: 500;
   text-decoration: none;
-  font-size: 0.82rem;
   transition: color 0.2s ease;
 }
 
@@ -80,32 +65,59 @@
   color: var(--green);
 }
 
-/* Iconos de redes sociales */
+/* Íconos de redes sociales */
 .social-icons {
   display: flex;
-  gap: 8px;
+  gap: 10px;
 }
 
 .social-icons a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
   background: var(--bg);
-  border: 1px solid var(--border-color, #cbd5e1);
+  border: 1px solid var(--border);
   color: var(--text);
-  text-decoration: none;
-  font-weight: 700;
-  font-size: 0.72rem;
-  transition: all 0.2s ease;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 }
 
-.social-icons a:hover {
-  background: var(--green);
-  border-color: var(--green);
+.social-icons svg {
+  width: 18px;
+  height: 18px;
+}
+
+.social-icons a:hover,
+.social-icons a:focus-visible {
   color: #ffffff;
+  border-color: transparent;
+  transform: translateY(-2px);
+}
+
+/* Color de marca de cada red al pasar el cursor */
+.social-icons .social-instagram:hover,
+.social-icons .social-instagram:focus-visible {
+  background: linear-gradient(45deg, #f58529, #dd2a7b 50%, #8134af);
+}
+
+.social-icons .social-facebook:hover,
+.social-icons .social-facebook:focus-visible {
+  background: #1877f2;
+}
+
+.social-icons .social-x:hover,
+.social-icons .social-x:focus-visible,
+.social-icons .social-tiktok:hover,
+.social-icons .social-tiktok:focus-visible {
+  background: #111111;
+}
+
+:root[data-theme="dark"] .social-icons .social-x:hover,
+:root[data-theme="dark"] .social-icons .social-tiktok:hover {
+  background: #ffffff;
+  color: #111111;
 }
 
 /* Copyright inferior */
@@ -113,31 +125,20 @@
   max-width: 1200px;
   margin: 0 auto;
   padding-top: 10px;
-  border-top: 1px solid var(--border-color, rgba(0, 0, 0, 0.08));
+  border-top: 1px solid var(--border);
   text-align: center;
   font-size: 0.75rem;
-  color: var(--text-soft, #64748b);
+  color: var(--text-soft);
 }
 
-.footer-bottom p {
-  margin: 0;
-}
-
-/* Tablet: marca arriba y tres columnas debajo */
-@media (max-width: 860px) {
+/* Móvil: todo centrado y apilado */
+@media (max-width: 640px) {
   .footer-container {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
+    flex-direction: column;
+    text-align: center;
   }
 
-  .footer-brand {
-    grid-column: 1 / -1;
-  }
-}
-
-/* Móvil: dos columnas para no alargar la página */
-@media (max-width: 480px) {
-  .footer-container {
-    grid-template-columns: repeat(2, 1fr);
+  .footer-links {
+    justify-content: center;
   }
 }
