@@ -8,7 +8,7 @@ export default function Footer() {
         
         {/* Columna 1: Marca y descripción */}
         <div className="footer-brand">
-          <h3 className="footer-logo">TIENDA CREATIVA</h3>
+          <h3 className="footer-logo">Tienda <span>Creativa</span></h3>
           <p className="footer-desc">
             Tu destino urbano para Sneakers, Hoodies y Accesorios de las mejores marcas.
           </p>
