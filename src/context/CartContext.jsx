@@ -20,11 +20,13 @@ function readCart() {
     return [];
   }
 
-  const quantities = new Map();
+  const cart = new Map();
   for (const entry of entries) {
-    const product = mockProductos.find((item) => item.id === entry?.productId);
+    const product = entry?.product;
     if (
       !product ||
+      product.id !== entry.productId ||
+      typeof product.precio !== "number" ||
       !Number.isInteger(entry.quantity) ||
       entry.quantity < 1 ||
       product.stock < 1
@@ -35,12 +37,24 @@ function readCart() {
 
     const quantity = Math.min(
       product.stock,
-      (quantities.get(product.id) || 0) + entry.quantity,
+      (cart.get(product.id)?.quantity || 0) + entry.quantity,
     );
-    quantities.set(product.id, quantity);
+    cart.set(product.id, { productId: product.id, quantity, product });
   }
 
-  return [...quantities].map(([productId, quantity]) => ({ productId, quantity }));
+  return [...cart.values()];
+}
+
+// Copia solo los datos que el carrito necesita del producto que llega del API.
+function snapshot(producto) {
+  return {
+    id: producto.id,
+    nombre: producto.nombre,
+    precio: Number(producto.precio),
+    imagen: producto.imagen,
+    stock: producto.stock,
+    categoria: producto.categoria,
+  };
 }
 
 export function CartProvider({ children }) {
@@ -52,18 +66,21 @@ export function CartProvider({ children }) {
 
   const items = useMemo(
     () =>
-      cart.flatMap(({ productId, quantity }) => {
-        const product = mockProductos.find((item) => item.id === productId);
-        return product ? [{ product, quantity, subtotal: product.precio * quantity }] : [];
-      }),
+      cart.map(({ product, quantity }) => ({
+        product,
+        quantity,
+        subtotal: product.precio * quantity,
+      })),
     [cart],
   );
   const total = items.reduce((sum, item) => sum + item.subtotal, 0);
   const itemCount = items.reduce((sum, item) => sum + item.quantity, 0);
 
-  function addToCart(productId, quantity = 1) {
-    const product = mockProductos.find((item) => item.id === productId);
-    if (!product) return "El producto seleccionado no existe en el catálogo.";
+  // Recibe el producto completo (tal como llega del API), no solo su id.
+  function addToCart(producto, quantity = 1) {
+    if (!producto?.id) return "El producto seleccionado no existe en el catálogo.";
+    const product = snapshot(producto);
+    const productId = product.id;
     if (!Number.isInteger(quantity) || quantity < 1) {
       return "La cantidad debe ser un número entero positivo.";
     }
@@ -83,14 +100,14 @@ export function CartProvider({ children }) {
             : item,
         );
       }
-      return [...currentCart, { productId, quantity }];
+      return [...currentCart, { productId, quantity, product }];
     });
     return null;
   }
 
   function updateQuantity(productId, quantity) {
-    const product = mockProductos.find((item) => item.id === productId);
-    if (!product) throw new Error("El producto seleccionado no existe en el catálogo.");
+    const product = cart.find((item) => item.productId === productId)?.product;
+    if (!product) throw new Error("El producto seleccionado no está en el carrito.");
     if (!Number.isInteger(quantity) || quantity < 1 || quantity > product.stock) {
       throw new Error("La cantidad debe ser un entero positivo dentro del inventario disponible.");
     }

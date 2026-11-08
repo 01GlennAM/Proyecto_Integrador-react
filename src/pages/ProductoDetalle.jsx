@@ -65,7 +65,7 @@ export default function ProductoDetalle() {
           type="button"
           disabled={sinStock}
           onClick={() => setMensajeCarrito(
-            addToCart(producto.id) || `${producto.nombre} agregado al carrito.`,
+            addToCart(producto) || `${producto.nombre} agregado al carrito.`,
           )}
         >
           {sinStock ? "Agotado" : "Agregar al carrito"}

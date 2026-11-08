@@ -27,7 +27,7 @@ export default function ProductCard({ producto }) {
           className="add-to-cart-button"
           type="button"
           disabled={sinStock}
-          onClick={() => setMensaje(addToCart(producto.id) || `${producto.nombre} agregado al carrito.`)}
+          onClick={() => setMensaje(addToCart(producto) || `${producto.nombre} agregado al carrito.`)}
         >
           {sinStock ? "Agotado" : "Agregar al carrito"}
         </button>
